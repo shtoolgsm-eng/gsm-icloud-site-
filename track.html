@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order | GSM SHTOOL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
+    <style>
+        body { background-color: #05070a; color: white; font-family: 'Inter', sans-serif; }
+        .neon-text { font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px #3b82f6; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+    <div class="max-w-md w-full glass-card p-10 rounded-3xl text-center">
+        <h2 class="text-2xl font-black neon-text mb-8 italic uppercase">Track Your Device</h2>
+        <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest font-bold">Enter IMEI or Serial Number</p>
+        
+        <input id="trackImei" type="text" placeholder="IMEI / SERIAL" class="w-full p-4 bg-black border border-gray-800 rounded-2xl mb-6 text-center font-mono outline-none focus:border-blue-500 transition">
+        
+        <button onclick="checkStatus()" class="w-full py-4 bg-blue-600 rounded-2xl font-black uppercase tracking-widest text-sm shadow-lg shadow-blue-900/40">Check Status</button>
+        
+        <div id="statusResult" class="mt-10 hidden">
+            <div class="p-4 rounded-xl bg-blue-900/10 border border-blue-500/20">
+                <span class="text-xs text-gray-500 uppercase font-bold tracking-widest block mb-2">Current Status</span>
+                <span id="statusLabel" class="text-xl font-black uppercase italic">PENDING</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = { projectId: "gsm-icloud-site", appId: "1:722465166110:web:2924065072d54e3cf06f0f" };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        async function checkStatus() {
+            const imei = document.getElementById('trackImei').value;
+            const resDiv = document.getElementById('statusResult');
+            const label = document.getElementById('statusLabel');
+
+            if(!imei) return alert("Please enter IMEI");
+
+            const q = await db.collection("orders").where("imei", "==", imei).get();
+            resDiv.classList.remove('hidden');
+
+            if (q.empty) {
+                label.innerText = "NOT FOUND";
+                label.className = "text-xl font-black uppercase text-red-500";
+            } else {
+                const data = q.docs[0].data();
+                label.innerText = data.status;
+                label.className = data.status === "Completed" ? "text-xl font-black uppercase text-green-400" : "text-xl font-black uppercase text-yellow-400";
+            }
+        }
+    </script>
+</body>
+</html>
