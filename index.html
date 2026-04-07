@@ -6,9 +6,11 @@
 <title>GSM SHTOOL VIP</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter&display=swap" rel="stylesheet">
 
 <style>
-body{background:#020406;color:#fff;font-family:sans-serif}
+body{background:#020406;color:#fff;font-family:Inter}
+.font-orbitron{font-family:Orbitron}
 .glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05)}
 .btn{background:linear-gradient(45deg,#1e40af,#3b82f6);box-shadow:0 0 25px rgba(59,130,246,.4);transition:.3s}
 .btn:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(59,130,246,.7)}
@@ -22,11 +24,11 @@ body{background:#020406;color:#fff;font-family:sans-serif}
 
 <!-- 👑 HEADER -->
 <header class="text-center mb-16">
-<h1 class="text-4xl text-blue-500 font-bold">GSM SHTOOL VIP</h1>
-<p class="text-gray-500 text-xs">Free Unlock Without Format</p>
+<h1 class="text-4xl font-orbitron text-blue-500">GSM SHTOOL VIP</h1>
+<p class="text-xs text-gray-500 mt-2">Free Unlock Without Format</p>
 </header>
 
-<!-- 🔥 ORDER BOX -->
+<!-- 🔥 ORDER -->
 <div class="max-w-xl mx-auto glass p-8 rounded-3xl">
 
 <select id="service" class="w-full p-4 bg-black mb-4">
@@ -35,9 +37,11 @@ body{background:#020406;color:#fff;font-family:sans-serif}
 
 <optgroup label="⚡ iCloud Services">
 <option value="icloud">iCloud Official Unlock (OOF)</option>
+<option value="icloud">iCloud Premium Unlock</option>
 </optgroup>
 
 <optgroup label="📱 iPhone Official">
+<option value="55">iPhone 11 Pro - $55</option>
 <option value="100">iPhone 12 Pro Max - $100</option>
 <option value="150">iPhone 13 Pro Max - $150</option>
 <option value="180">iPhone 15 Pro - $180</option>
@@ -54,38 +58,67 @@ body{background:#020406;color:#fff;font-family:sans-serif}
 
 <input id="imei" placeholder="ENTER IMEI (15 DIGITS)" class="w-full p-4 bg-black mb-4 text-center">
 
-<button onclick="go()" class="btn w-full py-4 rounded-xl font-bold">
+<button onclick="handleAction()" class="btn w-full py-4 rounded-xl font-bold">
 Continue
 </button>
 
 </div>
 
 <!-- ⚠️ NOTICE -->
-<div class="max-w-xl mx-auto mt-6 notice p-4 rounded-xl text-xs leading-relaxed text-red-300">
+<div class="max-w-xl mx-auto mt-6 notice p-4 rounded-xl text-xs text-red-300">
 <strong>Official iCloud Unlock (OOF)</strong><br>
-All models are supported. Unlock time ranges from <strong>1 hour to 24 hours</strong>.<br><br>
-
-Payment must be completed and confirmed via support by sending a screenshot of the payment along with the device serial/IMEI.<br><br>
-
-⚠️ Do NOT share or advertise this service on social media platforms.<br>
-Violation of these terms will result in permanent ban.
+All models supported. Time: 1 - 24 hours.<br><br>
+Send payment proof + IMEI to support.<br>
+Do NOT share service publicly or you will be banned.
 </div>
 
-<!-- 💰 BITCOIN -->
+<!-- 💰 BTC -->
 <div class="max-w-xl mx-auto mt-6 glass p-4 rounded-xl text-center">
 <p class="text-sm text-gray-400 mb-2">Bitcoin Payment Wallet</p>
-
 <div class="text-xs break-all">
 <span id="btc">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
 <button onclick="copyBTC()" class="copy-btn">Copy</button>
 </div>
 </div>
 
-<!-- 🤖 SUPPORT BUTTON -->
+<!-- 🤖 SUPPORT -->
 <div class="text-center mt-10">
-<button onclick="openSupport()" class="support-btn px-6 py-3 rounded-xl font-bold text-sm">
+<button onclick="openSupport()" class="support-btn px-6 py-3 rounded-xl font-bold">
 💬 Contact Support (Telegram)
 </button>
+</div>
+
+<!-- 🔥 TOOLS -->
+<div class="max-w-4xl mx-auto mt-20 space-y-6">
+
+<div class="glass p-6 rounded-xl">
+⭐ Oxygen Forensic  
+<br><a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" target="_blank">Download</a>
+</div>
+
+<div class="glass p-6 rounded-xl">
+⭐ Magnet Axiom  
+<br>Password: @arbad9000  
+<br><a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" target="_blank">Download</a>
+</div>
+
+<div class="glass p-6 rounded-xl">
+⭐ Physical Analyzer  
+<br><a href="https://www.mediafire.com/folder/e3uyfto9oc8tm/Physical_Analyzer+7.65" target="_blank">Download</a>
+</div>
+
+<div class="glass p-6 rounded-xl">
+⭐ MD-NEXT  
+<br>Password: @gaddtech  
+<br><a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" target="_blank">Download</a>
+</div>
+
+<div class="glass p-6 rounded-xl">
+⭐ UFED  
+<br>Password: @gaddtech  
+<br><a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" target="_blank">Download</a>
+</div>
+
 </div>
 
 <!-- 👑 FOOTER -->
@@ -95,36 +128,50 @@ Team iRemove Tool | Eng. Ahmed Burhan
 
 <script>
 
-function go(){
-const s=document.getElementById("service");
+function handleAction(){
+const service=document.getElementById("service");
 const imei=document.getElementById("imei").value;
 
-if(!s.value || imei.length!==15){
+if(!service.value || imei.length!==15){
 alert("Invalid Data");return;
 }
 
 // 🔥 iCloud → Telegram
-if(s.value==="icloud"){
+if(service.value==="icloud"){
 openSupport();
 return;
 }
 
-// 💰 الدفع لاحقاً
-alert("Payment system can be connected here");
+// 💰 Payment API (عدل الرابط)
+fetch("https://your-server.com/create-checkout",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+price:service.value,
+service:service.options[service.selectedIndex].text,
+imei
+})
+})
+.then(res=>res.json())
+.then(data=>{
+window.location.href=data.url;
+})
+.catch(()=>{
+alert("Payment server not connected");
+});
 }
 
 // 📋 COPY BTC
 function copyBTC(){
-const text = document.getElementById("btc").innerText;
-navigator.clipboard.writeText(text);
+navigator.clipboard.writeText(document.getElementById("btc").innerText);
 alert("Copied!");
 }
 
 // 🤖 TELEGRAM
 function openSupport(){
-window.location.href = "tg://resolve?domain=gsmshtool";
+window.location.href="tg://resolve?domain=gsmshtool";
 setTimeout(()=>{
-window.location.href = "https://t.me/gsmshtool";
+window.location.href="https://t.me/gsmshtool";
 },1000);
 }
 
