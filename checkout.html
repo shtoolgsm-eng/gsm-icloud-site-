@@ -2,21 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GSM SHTOOL | Payment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSM SHTOOL | Secure Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #05070a; color: white; font-family: 'Inter', sans-serif; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .neon-orange { color: #f97316; text-shadow: 0 0 15px rgba(249, 115, 22, 0.5); }
+        .address-box { background: #000; border: 1px dashed rgba(59, 130, 246, 0.5); transition: 0.3s; cursor: pointer; }
+        .address-box:hover { border-style: solid; background: rgba(59, 130, 246, 0.05); }
+        .step-number { background: linear-gradient(45deg, #1e40af, #3b82f6); }
+    </style>
 </head>
-<body class="bg-[#05070a] text-white p-6">
-    <div class="max-w-2xl mx-auto bg-gray-900/50 p-10 rounded-3xl border border-gray-800 text-center">
-        <h2 class="text-2xl font-black mb-8 text-orange-500 italic font-orbitron uppercase">Bitcoin Payment</h2>
-        <p class="text-gray-400 mb-6 text-sm italic">Send the exact amount to the address below:</p>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="max-w-2xl w-full glass-card p-10 md:p-16 rounded-[2.5rem] border border-white/5 shadow-2xl text-center">
         
-        <div class="bg-black p-6 rounded-2xl border border-gray-800 mb-8 select-all font-mono text-xs break-all text-blue-400">
-            bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9
+        <div class="mb-12">
+            <div class="w-16 h-16 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-orange-500/20">
+                <span class="text-3xl">₿</span>
+            </div>
+            <h2 class="text-3xl font-black font-orbitron neon-orange italic uppercase tracking-tighter">Payment Details</h2>
+            <p class="text-gray-500 text-[10px] uppercase tracking-[0.4em] mt-2">Manual Transaction Required</p>
         </div>
 
-        <p class="text-xs text-gray-500 mb-10">After payment, send your transaction hash and IMEI to Telegram: <span class="text-white font-bold">@gsmshtool</span></p>
-        
-        <a href="https://t.me/gsmshtool" class="inline-block bg-blue-600 px-10 py-4 rounded-xl font-bold uppercase text-xs tracking-widest">Confirm on Telegram</a>
+        <div class="space-y-8 text-left mb-12">
+            <div class="flex gap-5 items-start">
+                <div class="step-number w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-black text-xs">1</div>
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-widest text-blue-400 mb-2">Send Payment</h4>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">Please transfer the exact service amount to the Bitcoin (BTC) address below. Click the address to copy it.</p>
+                </div>
+            </div>
+
+            <div onclick="copyAddress()" class="address-box p-5 rounded-2xl group relative">
+                <span class="block text-[8px] text-gray-600 uppercase font-bold mb-2 tracking-widest group-hover:text-blue-400 transition">BTC Wallet Address (Tap to Copy)</span>
+                <span id="btcAddress" class="block font-mono text-xs md:text-sm text-white break-all font-bold">bc1p3w4yfuyu52gdv296nqrs72mfaafkr5qu7u3xmamflrmql0sqvsmqvhazr9</span>
+                <div id="copyTooltip" class="absolute -top-10 left-1/2 -translate-x-1/2 bg-blue-600 text-[10px] px-3 py-1 rounded opacity-0 transition-opacity">Copied!</div>
+            </div>
+
+            <div class="flex gap-5 items-start">
+                <div class="step-number w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-black text-xs">2</div>
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-widest text-blue-400 mb-2">Verify Transaction</h4>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">After sending, capture a screenshot of your receipt and send it along with your <span class="text-white font-bold">IMEI/Serial</span> to our admin on Telegram.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="https://t.me/gsmshtool" target="_blank" class="bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black font-orbitron uppercase text-[10px] tracking-widest transition flex items-center justify-center gap-2">
+                Contact Telegram
+            </a>
+            <a href="order.html" class="bg-white/5 hover:bg-white/10 py-4 rounded-xl font-black font-orbitron uppercase text-[10px] tracking-widest transition border border-white/5 flex items-center justify-center">
+                Back to Server
+            </a>
+        </div>
+
+        <p class="mt-10 text-[9px] text-gray-700 uppercase tracking-[0.3em]">© 2026 GSM SHTOOL SECURE PAYMENTS</p>
     </div>
+
+    <script>
+        function copyAddress() {
+            const address = document.getElementById('btcAddress').innerText;
+            const tooltip = document.getElementById('copyTooltip');
+            
+            navigator.clipboard.writeText(address).then(() => {
+                tooltip.style.opacity = '1';
+                setTimeout(() => {
+                    tooltip.style.opacity = '0';
+                }, 2000);
+            });
+        }
+    </script>
+
 </body>
 </html>
