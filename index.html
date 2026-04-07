@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GSM SHTOOL | Free Unlock Tool</title>
+<title>GSM SHTOOL VIP</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter&display=swap" rel="stylesheet">
@@ -12,66 +12,132 @@
 body {background:#020406;color:#fff;font-family:Inter;}
 .font-orbitron{font-family:Orbitron;}
 .glass{background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);}
-.btn{background:linear-gradient(45deg,#1e40af,#3b82f6);}
+.vip{background:linear-gradient(45deg,#1e40af,#3b82f6);box-shadow:0 0 25px rgba(59,130,246,.4);}
 </style>
 </head>
 
 <body class="p-6">
 
+<!-- 🔥 LOGO -->
 <header class="text-center mb-16">
-<h1 class="text-4xl font-orbitron text-blue-500">GSM SHTOOL</h1>
-<p class="text-xs text-gray-500 mt-3">Free Unlock Tool Without Format</p>
+<h1 class="text-4xl font-orbitron text-blue-500">GSM SHTOOL VIP</h1>
+<p class="text-xs text-gray-500 mt-2">Free Unlock Without Format</p>
 </header>
 
-<div class="max-w-3xl mx-auto glass p-10 rounded-3xl">
+<!-- 🧠 ORDER -->
+<div class="max-w-xl mx-auto glass p-8 rounded-3xl">
 
-<h2 class="text-xl font-orbitron text-center mb-8">Place Order</h2>
+<select id="serviceSelect" class="w-full p-4 bg-black mb-4">
 
-<select id="serviceSelect" class="w-full p-4 bg-black border mb-6">
-<option value="" disabled selected>Select Service</option>
-<option value="10">iCloud Bypass - $10</option>
-<option value="20">FRP Unlock - $20</option>
+<option value="">Select Service</option>
+
+<optgroup label="⚡ iCloud Services">
+<option value="icloud">iCloud Unlock All Models (Manual)</option>
+<option value="icloud">iCloud Premium Unlock</option>
+</optgroup>
+
+<optgroup label="📱 iPhone Official">
+<option value="100">iPhone 11 Pro - $55</option>
+<option value="100">iPhone 12 Pro Max - $100</option>
+<option value="150">iPhone 13 Pro Max - $150</option>
+<option value="180">iPhone 15 Pro - $180</option>
+<option value="205">iPhone 16 Pro Max - $205</option>
+<option value="210">iPhone 17 Pro Max - $210</option>
+</optgroup>
+
+<optgroup label="🤖 Android">
+<option value="20">Samsung FRP - $20</option>
+<option value="20">Xiaomi FRP - $20</option>
+</optgroup>
+
 </select>
 
-<input id="imeiInput" placeholder="ENTER IMEI (15 DIGITS)" class="w-full p-4 bg-black border mb-6 text-center">
+<input id="imeiInput" placeholder="ENTER IMEI (15 DIGITS)" class="w-full p-4 bg-black mb-4 text-center">
 
-<button id="submitBtn" onclick="submitOrder()" class="w-full py-4 btn rounded-xl font-bold">
-Submit Order
+<button id="actionBtn" onclick="handleAction()" class="w-full py-4 vip rounded-xl font-bold">
+Continue
 </button>
 
 </div>
 
-<!-- 🔥 FREE TOOL SECTION -->
-<div class="max-w-4xl mx-auto mt-20">
+<!-- 🔥 TOOLS SECTION -->
+<div class="max-w-4xl mx-auto mt-20 space-y-6">
 
-<h2 class="text-center text-2xl font-orbitron text-blue-500 mb-10">
-FREE GSM TOOL
-</h2>
+<!-- Oxygen -->
+<div class="glass p-6 rounded-xl">
+<h3>⭐ Oxygen Forensic Detective</h3>
+<a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131" target="_blank">Download</a>
+</div>
 
-<div class="glass p-8 rounded-3xl text-center">
+<!-- Magnet -->
+<div class="glass p-6 rounded-xl">
+<h3>⭐ Magnet Axiom V7.80</h3>
+<p>Password: @arbad9000</p>
+<a href="https://www.mediafire.com/folder/5176t9glfsafd/Magnet+Axiom" target="_blank">Download</a>
+</div>
 
-<h3 class="text-lg font-bold mb-4">
-⭐ Oxygen Forensic Detective
-</h3>
+<!-- Physical -->
+<div class="glass p-6 rounded-xl">
+<h3>⭐ Physical Analyzer 7.65</h3>
+<a href="https://www.mediafire.com/folder/e3uyfto9oc8tm/Physical_Analyzer+7.65" target="_blank">Download</a>
+</div>
 
-<p class="text-sm text-gray-400 mb-4">
-V 17.1.0.131 - Free Download With Key-Gen & Drivers
-</p>
+<!-- MD NEXT -->
+<div class="glass p-6 rounded-xl">
+<h3>⭐ MD-NEXT 2.0.3</h3>
+<p>Password: @gaddtech</p>
+<a href="https://www.mediafire.com/folder/5xlcveadthv5y/MD-NEXT_2.0.3" target="_blank">Download</a>
+</div>
 
-<a href="https://www.mediafire.com/folder/cpxe6acypd69j/OXYGEN+17.1.0.131"
-target="_blank"
-class="btn px-6 py-3 rounded-xl font-bold">
-Download Now
-</a>
-
+<!-- UFED -->
+<div class="glass p-6 rounded-xl">
+<h3>⭐ UFED 7.71</h3>
+<p>Password: @gaddtech</p>
+<a href="https://www.mediafire.com/folder/y28kdkqp8xnyi/UFED7.71" target="_blank">Setup</a>
 </div>
 
 </div>
 
+<!-- 👑 FOOTER -->
 <footer class="text-center mt-20 text-xs text-gray-600">
 Team iRemove Tool | Eng. Ahmed Burhan
 </footer>
 
-<script type="module" src="js/order.js"></script>
+<script>
+
+function handleAction(){
+
+const service = document.getElementById("serviceSelect");
+const imei = document.getElementById("imeiInput").value;
+
+if(!service.value || imei.length!==15){
+alert("Invalid Data");return;
+}
+
+// 🔥 iCloud → Support
+if(service.value === "icloud"){
+window.open("https://t.me/YOUR_TELEGRAM","_blank");
+return;
+}
+
+// 💰 Normal Payment
+fetch("http://localhost:3000/create-checkout",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+price:service.value,
+service:service.options[service.selectedIndex].text,
+imei
+})
+})
+.then(res=>res.json())
+.then(data=>{
+window.location.href = data.url;
+});
+
+}
+
+</script>
+
 </body>
 </html>
